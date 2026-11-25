@@ -7,6 +7,8 @@
      (nome-480.webp e nome-800.webp) e escreva o "nome" no campo foto.
    - Para tirar um produto: apague o bloco { ... }, inclusive a vírgula.
    - Para esconder sem apagar: mude ativo: true para ativo: false.
+   - Produtos com "opcoes" mostram escolhas (tamanho, kit...) e somam o preço
+     na comanda. O valor de cada escolha fica em preco ou mais.
    ========================================================= */
 
 window.CONFIG = {
@@ -33,25 +35,60 @@ window.CATEGORIAS = [
 
 window.PRODUTOS = [
   {
+    id: "monte-arvore", categoria: "natal", ativo: true, selo: "Monte a sua",
+    nome: "Monte sua árvore de chenille", nomeComanda: "Árvore de chenille",
+    curta: "Escolha tamanho, cores, pisca-pisca e base. O preço aparece na hora.",
+    descricao: "Árvore de chenille montada do seu jeito: você escolhe o tamanho, as cores, se leva pisca-pisca e qual base. Acompanha laço e enfeites, e as cores exatas você combina com a gente no WhatsApp.",
+    preco: "R$ 12,90", unidade: "", prazo: "5 a 7 dias", minimo: "1 unidade",
+    personaliza: ["Tamanho", "Cores", "Pisca-pisca", "Base"],
+    foto: "natal-arvores-chenille-cores",
+    montador: true,   // abre a seção "Monte sua árvore" em vez da janela comum
+    // As fotos da árvore são camadas em img/arvore-*.webp (tronco por cor, luzes, bases).
+    // OPÇÕES: "preco" é o valor do tamanho; "mais" é o que soma por cima. Para mudar um valor, troque o número (use ponto: 12.90).
+    opcoes: [
+      { id: "tamanho", nome: "Tamanho", itens: [
+        { nome: "Mini",   detalhe: "12 a 15 cm", preco: 12.90, escala: 0.62 },
+        { nome: "Média",  detalhe: "25 cm",      preco: 24.90, escala: 0.8 },
+        { nome: "Grande", detalhe: "40 cm",      preco: 44.90, escala: 1 },
+      ]},
+      { id: "cor", nome: "Cores da árvore", nota: "As cores exatas você combina com a gente no WhatsApp.", itens: [
+        { nome: "Uma cor", tronco: "uma",       amostra: ["#2F7D4F"] },
+        { nome: "2 cores", tronco: "duas",       amostra: ["#2F7D4F", "#B8322E"] },
+        { nome: "3 cores", tronco: "tres",       amostra: ["#2F7D4F", "#B8322E", "#F2EEE4"] },
+        { nome: "Tons de verde", tronco: "verde", amostra: ["#1F5E3A", "#4E9A5B", "#9CC36A"] },
+        { nome: "Tons de azul", tronco: "azul",  amostra: ["#1E3461", "#5E7BA8", "#A9BAD3"] },
+        { nome: "Tons de rosa", tronco: "rosa",  amostra: ["#C2577A", "#E79BB4", "#F6D3DF"] },
+      ]},
+      { id: "pisca", nome: "Pisca-pisca", itens: [
+        { nome: "Sem pisca-pisca", detalhe: "tronco de chenille", mais: 0 },
+        { nome: "Com pisca-pisca", detalhe: "LED a pilha",        mais: 12, luzes: true },
+      ]},
+      { id: "base", nome: "Base", itens: [
+        { nome: "Sem base",          detalhe: "tronco de chenille", mais: 0 },
+        { nome: "Base de madeira",   detalhe: "tronco redondo",     mais: 6, base: "madeira" },
+        { nome: "Base Papai Noel",   detalhe: "vermelha com cinto", mais: 9, base: "noel" },
+      ]},
+    ],
+  },
+  {
     id: "bola-foto", categoria: "natal", ativo: true, selo: "Mais pedido",
     nome: "Bola de acrílico com foto",
-    curta: "Sua foto dentro de uma bola de 8 cm, com laço à escolha.",
-    descricao: "Uma bola transparente de 8 cm com a foto que você escolher: o pet, a família, o primeiro Natal do bebê. Finalizada com laço de cetim e tag com nome. Um presente que vira tradição na árvore.",
-    preco: "R$ 25", unidade: "", prazo: "5 a 7 dias", minimo: "1 unidade",
+    curta: "Sua foto dentro de uma bola de 6,5 cm, com laço à escolha.",
+    descricao: "Uma bola transparente de 6,5 cm com a foto que você escolher: o pet, a família, o primeiro Natal do bebê. Finalizada com laço de cetim e tag com nome. Em kit, cada bola sai mais em conta.",
+    preco: "R$ 18", unidade: "", prazo: "5 a 7 dias", minimo: "1 unidade",
     personaliza: ["Foto", "Nome e ano", "Cor do laço", "Frase curta"],
     foto: "natal-bola-acrilico-com-foto",
+    opcoes: [
+      { id: "kit", nome: "Quantidade", itens: [
+        { nome: "1 bola",       detalhe: "unidade",        preco: 18 },
+        { nome: "Kit 3 bolas",  detalhe: "R$ 16 cada",     preco: 48 },
+        { nome: "Kit 5 bolas",  detalhe: "R$ 15 cada",     preco: 75 },
+        { nome: "Kit 10 bolas", detalhe: "R$ 13 cada",     preco: 130 },
+      ]},
+    ],
   },
   {
-    id: "arvore-chenille", categoria: "natal", ativo: true,
-    nome: "Árvore de chenille",
-    curta: "Mini árvore com laço e enfeites na cor que você escolher.",
-    descricao: "Mini árvore de chenille sobre base de madeira, com laço e pequenos enfeites. Fica linda em mesa posta, escrivaninha ou como lembrança de fim de ano.",
-    preco: "R$ 35", unidade: "", prazo: "5 a 7 dias", minimo: "1 unidade",
-    personaliza: ["Cor da árvore", "Cor do laço", "Enfeites", "Tag com nome"],
-    foto: "natal-arvores-chenille-cores",
-  },
-  {
-    id: "arvore-laco", categoria: "natal", ativo: true,
+    id: "arvore-laco", categoria: "natal", ativo: false,
     nome: "Árvore de chenille com laço",
     curta: "Modelos com laço rosa, azul ou do seu jeito.",
     descricao: "A nossa árvore de chenille com laço em destaque. Escolha uma das cores da vitrine ou peça a combinação da sua decoração.",
@@ -69,7 +106,7 @@ window.PRODUTOS = [
     foto: "natal-guirlanda-chenille",
   },
   {
-    id: "noel-boneco", categoria: "natal", ativo: true,
+    id: "noel-boneco", categoria: "natal", ativo: false,
     nome: "Noel e boneco de neve",
     curta: "Bonecos de chenille para enfeitar a mesa ou presentear.",
     descricao: "Papai Noel e boneco de neve feitos em chenille, perfeitos para a mesa de Natal, kits de presente ou lembrancinhas de amigo secreto.",

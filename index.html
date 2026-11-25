@@ -34,6 +34,7 @@
         <span class="marca-nome"><small>Ateliê</small>Gramatura<sup>2</sup></span>
       </a>
       <nav class="menu" aria-label="Seções">
+        <a href="#monte-sua-arvore" class="js-link-montar" hidden>Monte sua árvore</a>
         <a href="#catalogo">Catálogo</a>
         <a href="#como-pedir">Como pedir</a>
         <a href="#sobre">Ateliê</a>
@@ -71,6 +72,44 @@
         <figure class="polaroid p1"><img src="img/convite-casamento-azul-480.webp" alt="" width="480" height="600"><figcaption>convites</figcaption></figure>
         <figure class="polaroid p2"><img src="img/natal-bola-acrilico-com-foto-480.webp" alt="" width="480" height="600"><figcaption>com a sua foto</figcaption></figure>
         <figure class="polaroid p3"><img src="img/festa-topo-3d-chapeuzinho-480.webp" alt="" width="480" height="600"><figcaption>topo 3D</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- MONTE SUA ÁRVORE (as opções e os preços ficam no produtos.js, produto "monte-arvore") -->
+    <section class="montar" id="monte-sua-arvore" aria-labelledby="t-montar" hidden>
+      <div class="sec-cab">
+        <p class="anota">especial de Natal</p>
+        <h2 id="t-montar">Monte sua <span class="script">árvore</span></h2>
+        <p class="sec-sub">Árvore de chenille do seu jeito: escolha o tamanho, as cores, o pisca-pisca e a base. O valor aparece na hora.</p>
+      </div>
+      <div class="montar-card">
+        <div class="montar-palco js-mt-palco" aria-hidden="true">
+          <img class="aq montar-aq" src="img/aq-2.webp" alt="">
+          <span class="montar-chao"></span>
+          <div class="cena-pulo js-cena-pulo">
+            <div class="cena js-cena">
+              <div class="cena-arvore js-cena-arvore"></div>
+              <div class="cena-base js-cena-base"></div>
+            </div>
+          </div>
+          <div class="faiscas js-faiscas"></div>
+          <p class="montar-tam js-mt-tam"></p>
+        </div>
+        <div class="montar-lado">
+          <div class="montar-opcoes js-mt-opcoes"></div>
+          <div class="montar-fim">
+            <div class="montar-total">
+              <span>Sua árvore</span>
+              <strong class="js-mt-total" aria-live="polite"></strong>
+              <small class="js-mt-resumo"></small>
+            </div>
+            <div class="montar-acoes">
+              <button class="btn btn-tinta js-mt-add" type="button"><svg class="ico-mais" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Adicionar à comanda</button>
+              <a class="btn btn-linha js-mt-wa" href="#" target="_blank" rel="noopener"><svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Pedir no WhatsApp</a>
+            </div>
+            <p class="montar-nota">Laço e enfeites inclusos. Pedidos de Natal até 13/12, prazo de 5 a 7 dias.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -128,6 +167,7 @@
         <form class="form js-form" novalidate>
           <div class="comanda">
             <ul class="comanda-lista js-comanda-lista" aria-live="polite"></ul>
+            <p class="comanda-total js-comanda-total" hidden></p>
             <p class="comanda-vazia js-comanda-vazia">Sua comanda está vazia. <a href="#catalogo">Escolher produtos</a></p>
           </div>
           <label class="campo">
@@ -225,6 +265,7 @@
         <div>
           <h3>Ateliê</h3>
           <ul>
+            <li><a href="#monte-sua-arvore">Monte sua árvore</a></li>
             <li><a href="#catalogo">Catálogo</a></li>
             <li><a href="#como-pedir">Como pedir</a></li>
             <li><a href="#pedido">Sua comanda</a></li>
@@ -289,7 +330,7 @@
       <div class="modal-txt">
         <p class="anota js-m-cat"></p>
         <h2 id="m-nome" class="js-m-nome"></h2>
-        <p class="modal-preco"><span>a partir de</span> <strong class="js-m-preco"></strong></p>
+        <p class="modal-preco"><span class="js-m-apartir">a partir de</span> <strong class="js-m-preco"></strong></p>
         <p class="js-m-desc"></p>
         <dl class="modal-info">
           <div><dt>Prazo</dt><dd class="js-m-prazo"></dd></div>
@@ -297,6 +338,7 @@
         </dl>
         <p class="modal-rotulo">Dá para personalizar</p>
         <ul class="tags js-m-tags"></ul>
+        <div class="modal-opcoes js-m-opcoes" hidden></div>
         <a class="btn btn-tinta btn-full js-m-wa" href="#" target="_blank" rel="noopener">
           <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
           Pedir no WhatsApp
