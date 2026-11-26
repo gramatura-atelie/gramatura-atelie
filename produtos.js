@@ -12,7 +12,7 @@
    ========================================================= */
 
 window.CONFIG = {
-  whatsapp: "5547988442699",           // <- TROQUE AQUI: 55 + DDD + número, só dígitos
+  whatsapp: "5547997702243",           // <- TROQUE AQUI: 55 + DDD + número, só dígitos
   instagram: "ateliegramatura",
   tiktok: "ateliegramatura",
   prazoNatal: "2026-12-13",            // último dia para pedidos de Natal (ano-mês-dia)
